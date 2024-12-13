@@ -1,15 +1,37 @@
-"""
-Depuis le fichier liste_mots.txt, on récupère tous les mots de 6,7,8,9,10 lettres.
-et on génère 5 fichiers textes contenant les mots en fonction de leur taille (un mot par ligne, séparé par un \n):
-dico_6_lettres.txt
-dico_7_lettres.txt
-dico_8_lettres.txt
-dico_9_lettres.txt
-dico_10_lettres.txt
-On enlève les accents, les espaces, les tirets et les mots en double.
-"""
+import unicodedata
 
 def lire_filtrer_mots(chemin_lexique, longueur):
+    import unicodedata
+
+def lire_filtrer_mots(chemin_lexique: str, longueur: int) -> list[str]:
+
+    mots_valides = set()
+    mots_trop_longs = set()
+
+    with open(chemin_lexique, 'r', encoding='utf-8') as file:
+        for ligne in file:
+            # Extraire uniquement le premier mot (avant les espaces)
+            mot = ligne.split()[0]
+
+            # Nettoyer le mot
+            mot = ''.join(
+                c for c in unicodedata.normalize('NFD', mot) 
+                if unicodedata.category(c) != 'Mn'
+            )
+            mot = mot.replace('-', '').replace(' ', '').upper()
+
+            # Filtrer selon la longueur
+            if len(mot) == longueur:
+                mots_valides.add(mot)
+            elif len(mot) > longueur:
+                mots_trop_longs.add(mot)
+
+    # Écrire les mots trop longs dans un fichier "trop_gros.txt"
+    with open("trop_gros.txt", 'w', encoding='utf-8') as file:
+        file.writelines(f"{mot}\n" for mot in sorted(mots_trop_longs))
+
+    return sorted(mots_valides)
+
     return []
 
 
