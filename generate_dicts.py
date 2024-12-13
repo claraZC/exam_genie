@@ -10,11 +10,9 @@ dico_10_lettres.txt
 On enlève les accents, les espaces, les tirets et les mots en double.
 """
 
-def lire_filtrer_mots(chemin_lexique, longueur):
-    import unicodedata
 
 def lire_filtrer_mots(chemin_lexique: str, longueur: int) -> list[str]:
-        """
+    """
     Lit un fichier texte et retourne une liste de mots ayant une longueur donnée.
     Les mots trop longs sont enregistrés dans un fichier `trop_gros.txt`.
 
@@ -25,10 +23,9 @@ def lire_filtrer_mots(chemin_lexique: str, longueur: int) -> list[str]:
     Returns:
         list[str]: Liste des mots valides en majuscule.
     """
-
     mots_valides = set()
     mots_trop_longs = set()
-
+    
     with open(chemin_lexique, 'r', encoding='utf-8') as file:
         for ligne in file:
             # Extraire uniquement le premier mot (avant les espaces)
