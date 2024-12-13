@@ -1,9 +1,30 @@
 import unicodedata
+"""
+Depuis le fichier liste_mots.txt, on récupère tous les mots de 6,7,8,9,10 lettres.
+et on génère 5 fichiers textes contenant les mots en fonction de leur taille (un mot par ligne, séparé par un \n):
+dico_6_lettres.txt
+dico_7_lettres.txt
+dico_8_lettres.txt
+dico_9_lettres.txt
+dico_10_lettres.txt
+On enlève les accents, les espaces, les tirets et les mots en double.
+"""
 
 def lire_filtrer_mots(chemin_lexique, longueur):
     import unicodedata
 
 def lire_filtrer_mots(chemin_lexique: str, longueur: int) -> list[str]:
+        """
+    Lit un fichier texte et retourne une liste de mots ayant une longueur donnée.
+    Les mots trop longs sont enregistrés dans un fichier `trop_gros.txt`.
+
+    Args:
+        chemin_lexique (str): Chemin vers le fichier texte contenant les mots.
+        longueur (int): Longueur des mots à sélectionner.
+
+    Returns:
+        list[str]: Liste des mots valides en majuscule.
+    """
 
     mots_valides = set()
     mots_trop_longs = set()
