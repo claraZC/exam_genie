@@ -8,6 +8,17 @@ def generate_valid_words(
     letters_in_secret: list[tuple[str, int]],
     letters_not_in_secret: list[str]
 ) -> list[str]:
+    """
+    Filtre les mots possibles en fonction des lettres trouvées et exclues.
+
+    Args:
+        possible_words (list[str]): Liste des mots possibles.
+        letters_in_secret (list[tuple[str, int]]): Lettres bien placées [(lettre, position)].
+        letters_not_in_secret (list[str]): Lettres à exclure.
+
+    Returns:
+        list[str]: Liste des mots valides.
+    """
 
     valid_words = []
 
@@ -30,6 +41,18 @@ def generate_best_letters(
     letters_in_secret: list[tuple[str, int]],
     letters_not_in_secret: list[str]
 ) -> str:
+    """
+    Suggère la meilleure lettre à jouer en se basant sur la fréquence moyenne par mot.
+
+    Args:
+        possible_words (list[str]): Liste des mots restants.
+        letters_not_played (list[str]): Lettres que l'utilisateur n'a pas encore jouées.
+        letters_in_secret (list[tuple[str, int]]): Lettres bien placées [(lettre, position)].
+        letters_not_in_secret (list[str]): Lettres exclues.
+
+    Returns:
+        str: Lettre suggérée.
+    """
 
     # Compter les occurrences de chaque lettre dans les mots restants
     letter_counts = Counter()
